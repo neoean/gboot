@@ -1,0 +1,3 @@
+[submodule "gormgen"]
+	path = gormgen
+	url = https://github.com/go-gorm/gen.git
