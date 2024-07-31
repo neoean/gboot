@@ -1,0 +1,23 @@
+package config
+
+var ConfigTmplate = `port: 8899
+
+db:
+  type: mysql
+  host: {{.Host}}
+  user: {{.Username}}
+  password: {{.Password}}
+  name: {{.DbName}}
+
+redis:
+  addr: 127.0.0.1:6379
+
+weApp:
+  appId: 
+  secret: 
+
+qiniu:
+  accessKey: 
+  secretKey: 
+
+`

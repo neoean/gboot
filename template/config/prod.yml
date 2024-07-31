@@ -1,0 +1,20 @@
+port: 9001
+
+db:
+  type: mysql
+  host: 127.0.0.1:3306
+  hostR1: 127.0.0.1:3306
+  user: s2m_aijiabei_cn
+  password: SWWmpWdWGi6y8KZJ
+  name: s2m_aijiabei_cn
+
+redis:
+  addr:
+
+weApp:
+  appId:
+  secret:
+
+qiniu:
+  accessKey:
+  secretKey:

@@ -14,7 +14,7 @@ var (
 	dsn      = flag.String("dsn", "", "database schema name")
 	userName = flag.String("username", "root", "database username")
 	password = flag.String("password", "123456", "database password")
-	host     = flag.String("host", "127.0.0.1", "database host")
+	host     = flag.String("host", "127.0.0.1:3306", "database host")
 	dbName   = flag.String("dbname", "test", "database name")
 )
 
@@ -30,4 +30,7 @@ func main() {
 
 	// api gen
 	service.GenApi(*dir)
+
+	// common gen
+	service.GenCommon(*dir, *userName, *password, *host, *dbName)
 }
