@@ -13,8 +13,8 @@ type Querier interface {
 
 func GenModel(dir string) {
 	g := gen.NewGenerator(gen.Config{
-		OutPath:      dir + "dao",
-		ModelPkgPath: dir + "model",
+		OutPath:      dir + "/dao",
+		ModelPkgPath: dir + "/model",
 		Mode:         gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface, // generate mode
 		WithUnitTest: false,
 	})

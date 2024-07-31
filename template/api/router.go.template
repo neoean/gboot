@@ -1,0 +1,33 @@
+package router
+
+import (
+	"github.com/gin-gonic/gin"
+	{{range .}}
+	"{{.Package}}/router/{{.LowerModelName}}"
+	{{end}}
+)
+
+func ConfigRouter(r *gin.RouterGroup) {
+	// api root
+	apiRoot := r.Group("/api")
+
+	// add jwt
+	apiRoot.Use(middlewares.Jwt())
+
+    {{range .}}
+	// {{.ModelName}} group
+	{{.LowerModelName}}Group(apiRoot.Group("/{{.TableName}}"))
+
+    {{end}}
+}
+
+{{range .}}
+func {{.LowerModelName}}Group(g *gin.RouterGroup) {
+	g.POST("/{{.TableName}}", {{.LowerModelName}}.Add)
+	g.DELETE("/{{.TableName}}/:id", {{.LowerModelName}}.Delete)
+	g.PUT("/{{.TableName}}/:id", {{.LowerModelName}}.Update)
+	g.GET("/{{.TableName}}", {{.LowerModelName}}.GetAll)
+	g.GET("/{{.TableName}}/:id", {{.LowerModelName}}.Get)
+}
+
+{{end}}

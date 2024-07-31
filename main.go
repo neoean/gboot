@@ -8,7 +8,7 @@ import (
 
 var (
 	bindAddr = flag.String("bindAddr", ":8090", "http listen address")
-	dir      = flag.String("dir", "project-demo/", "project directory")
+	name     = flag.String("name", "project-demo", "project name")
 
 	dbType   = flag.String("dbtype", "mysql", "database type")
 	dsn      = flag.String("dsn", "", "database schema name")
@@ -26,11 +26,11 @@ func main() {
 	db.InitMysql(*dsn, *userName, *password, *host, *dbName)
 
 	// gorm gen
-	service.GenModel(*dir)
+	service.GenModel(*name)
 
 	// api gen
-	service.GenApi(*dir)
+	service.GenApi(*name)
 
 	// common gen
-	service.GenCommon(*dir, *userName, *password, *host, *dbName)
+	service.GenCommon(*name, *userName, *password, *host, *dbName)
 }

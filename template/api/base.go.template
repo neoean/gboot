@@ -1,0 +1,68 @@
+package router
+
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
+
+const (
+	CodeSuccess      = 0
+	CodeFail         = -1
+	CodeUnauthorized = 403
+)
+
+type Response struct {
+	Data    interface{} `json:"data"`
+	Code    int         `json:"code"`
+	Message string      `json:"message"`
+}
+
+type PageRequest struct {
+	Page int `json:"page" form:"page"`
+	Size int `json:"size" form:"page_size"`
+}
+
+type PageResponse struct {
+	Count int64       `json:"count"`
+	Rows  interface{} `json:"rows"` // slice
+}
+
+
+func Success(c *gin.Context, data interface{}) {
+	c.JSON(http.StatusOK, Response{
+		Data:    data,
+		Code:    CodeSuccess,
+		Message: "",
+	})
+	return
+}
+
+func SuccessMsg(c *gin.Context, message string, data interface{}) {
+	c.JSON(http.StatusOK, Response{
+		Data:    data,
+		Code:    CodeSuccess,
+		Message: message,
+	})
+	return
+}
+
+func ReturnDataDirect(c *gin.Context, data interface{}) {
+	c.PureJSON(http.StatusOK, data)
+	return
+}
+
+func Fail(c *gin.Context, err string) {
+	c.JSON(http.StatusOK, Response{
+		Code:    CodeFail,
+		Message: err,
+	})
+	return
+}
+
+func FailWithCode(c *gin.Context, code int, err string) {
+	c.JSON(http.StatusOK, Response{
+		Code:    code,
+		Message: err,
+	})
+	return
+}

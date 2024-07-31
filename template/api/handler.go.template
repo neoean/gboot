@@ -1,0 +1,95 @@
+package {{.LowerModelName}}
+
+import (
+	"github.com/gin-gonic/gin"
+	"{{.Package}}/common/types"
+	"{{.Package}}/service/{{.LowerModelName}}"
+)
+
+func Get(c *gin.Context) {
+	idStr := c.Param("id")
+	if idStr == "" {
+		base.Fail(c, bizError.CommonInvalidError.Error()+err.Error())
+		return
+	}
+
+    id := types.StringToInt64(idStr)
+
+    response, err := {{.LowerModelName}}.GetById(c, id)
+    if err != nil {
+        base.Fail(c, bizError.CommonQueryError.Error()+err.Error())
+        return
+    }
+
+	base.Success(c, response)
+}
+
+
+func GetList(c *gin.Context) {
+	req := &ListRequest{}
+    if err := c.Bind(req); err != nil {
+        base.Fail(c, bizError.CommonInvalidError.Error()+err.Error())
+        return
+    }
+
+    response, count, err := {{.LowerModelName}}.GetList(c, req.Page, req.Size)
+    if err != nil {
+        base.Fail(c, bizError.CommonQueryError.Error()+err.Error())
+        return
+    }
+
+	base.Success(c, base.PageResponse{count, response})
+}
+
+
+func Add(c *gin.Context) {
+	req := &model.{{.ModelName}}
+    if err := c.Bind(req); err != nil {
+        base.Fail(c, bizError.CommonInvalidError.Error()+err.Error())
+        return
+    }
+
+    response, err := {{.LowerModelName}}.Create(c, req)
+    if err != nil {
+        base.Fail(c, bizError.CommonUpdateError.Error()+err.Error())
+        return
+    }
+
+	base.Success(c, response)
+}
+
+
+func Update(c *gin.Context) {
+	req := &model.{{.ModelName}}
+    if err := c.Bind(req); err != nil {
+        base.Fail(c, bizError.CommonInvalidError.Error()+err.Error())
+        return
+    }
+
+    response, err := {{.LowerModelName}}.Update(c, req)
+    if err != nil {
+        base.Fail(c, bizError.CommonUpdateError.Error()+err.Error())
+        return
+    }
+
+	base.Success(c, response)
+}
+
+
+func Delete(c *gin.Context) {
+	idStr := c.Param("id")
+    if idStr == "" {
+        base.Fail(c, bizError.CommonInvalidError.Error()+err.Error())
+        return
+    }
+
+    id := types.StringToInt64(idStr)
+
+    err := {{.LowerModelName}}.Delete(c, id)
+    if err != nil {
+        base.Fail(c, bizError.CommonQueryError.Error()+err.Error())
+        return
+    }
+
+    base.Success(c, response)
+}
