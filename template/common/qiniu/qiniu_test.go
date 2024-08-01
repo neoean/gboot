@@ -1,8 +1,8 @@
 package qiniu
 
 import (
-	"step2money-server/common/config"
 	"testing"
+	"{{.Package}}/common/config"
 )
 
 func TestUpload(t *testing.T) {

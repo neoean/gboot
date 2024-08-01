@@ -2,7 +2,7 @@ package redis
 
 import (
 	"github.com/go-redis/redis"
-	"step2money-server/common/config"
+	"{{.Package}}/common/config"
 )
 
 func Init() {

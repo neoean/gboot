@@ -1,0 +1,63 @@
+package auth
+
+import (
+	"context"
+	"errors"
+	"gorm.io/gorm"
+	"{{.Package}}/common/bizError"
+	"{{.Package}}/common/logs"
+	"{{.Package}}/dao"
+	"{{.Package}}/model"
+	"time"
+)
+
+func GetById(ctx context.Context, id int64) (result *model.{{.ModelName}}, err error) {
+	do := dao.Q.{{.ModelName}}
+	{{.LowerModelName}}Dao := do.WithContext(ctx)
+
+	result, err = {{.LowerModelName}}Dao.Where(do.ID.Eq(id)).First()
+	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+		logs.Error("{{.LowerModelName}} Get by id:%v bizError:%v", id, err)
+		return nil, err
+	}
+
+	return
+}
+
+func GetList(ctx context.Context, page, size int64) (list []*model.{{.ModelName}}, count int64, err error) {
+	dq := dao.Q.{{.ModelName}}
+	{{.LowerModelName}}Dao := dq.WithContext(ctx)
+
+	list, count, err = {{.LowerModelName}}Dao.FindByPage(dto.Page(page, size))
+	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+		logs.Error("{{.LowerModelName}} GetList bizError:%v", err)
+		return nil, 0, err
+	}
+
+	return
+}
+
+func Create(ctx context.Context, {{.LowerModelName}} *model.{{.ModelName}}) error {
+	dq := dao.Q.{{.ModelName}}
+	return dq.WithContext(ctx).Save({{.LowerModelName}})
+}
+
+func Update(ctx context.Context, {{.LowerModelName}} *model.{{.ModelName}}) error {
+	dq := dao.Q.{{.ModelName}}
+	return dq.WithContext(ctx).Save({{.LowerModelName}})
+}
+
+
+func Delete(ctx context.Context, id int64) error {
+	dq := dao.Q.{{.ModelName}}
+	resultInfo, err := dq.WithContext(ctx).Where(dq.ID.Eq(id)).Update(dq.DeleteAt, time.Now())
+    if err != nil {
+        logs.Error("{{.LowerModelName}} delete bizError:%v", err)
+        return err
+    }
+    if resultInfo.RowsAffected < 1 {
+        logs.Error("{{.LowerModelName}} delete error: RowsAffected<1")
+        return bizError.CommonDeleteError
+    }
+    return nil
+}

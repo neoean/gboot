@@ -1,9 +1,9 @@
 package main
 
 import (
-	"step2money-server/common/config"
-	"step2money-server/common/db"
-	"step2money-server/common/logs"
+	"{{.Package}}/common/config"
+	"{{.Package}}/common/db"
+	"{{.Package}}/common/logs"
 )
 
 func main() {

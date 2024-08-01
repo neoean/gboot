@@ -6,8 +6,8 @@ import (
 	"go.uber.org/zap/zapcore"
 	"io"
 	"os"
-	"step2money-server/common/env"
 	"time"
+	"{{.Package}}/common/env"
 )
 
 var (

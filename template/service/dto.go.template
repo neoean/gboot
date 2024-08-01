@@ -1,0 +1,9 @@
+package service
+
+type WxAppReq struct {
+	RawData       string `json:"raw_data"`
+	EncryptedData string `json:"encrypted_data"`
+	Signature     string `json:"signature"`
+	Iv            string `json:"iv"`
+	CloudID       string `json:"cloud_id"`
+}

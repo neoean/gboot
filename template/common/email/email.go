@@ -2,7 +2,7 @@ package email
 
 import (
 	"gopkg.in/gomail.v2"
-	"step2money-server/common/config"
+	"{{.Package}}/common/config"
 )
 
 func InitEmailDialer() {

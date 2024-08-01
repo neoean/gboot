@@ -6,9 +6,9 @@ import (
 	"github.com/medivhzhan/weapp/v3/logger"
 	"log"
 	"net/http"
-	"step2money-server/common/config"
-	"step2money-server/common/logs"
 	"time"
+	"{{.Package}}/common/config"
+	"{{.Package}}/common/logs"
 )
 
 func InitWeApp() {

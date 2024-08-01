@@ -31,6 +31,7 @@ func GenApi(projectName string) {
 
 		// handler tmpl
 		GenGoTemplate("./template/api/handler.go.template", projectName+"/router/"+lowerModelName, "handler.go", model)
+		GenGoTemplate("./template/service/service.go.template", projectName+"/service/"+lowerModelName, "service.go", model)
 	}
 
 	// root router tmpl
@@ -39,4 +40,7 @@ func GenApi(projectName string) {
 	// base
 	GenGoTemplate("./template/api/base.go.template", projectName+"/router/base", "base.go", models)
 
+	// middlewares
+	GenGoTemplate("./template/api/middlewares/jwt.go.template", projectName+"/router/middlewares", "jwt.go", models[0])
+	GenGoTemplate("./template/api/middlewares/cors.go.template", projectName+"/router/middlewares", "cors.go", models[0])
 }

@@ -2,8 +2,8 @@ package types
 
 import (
 	"encoding/json"
-	"step2money-server/common/logs"
 	"strconv"
+	"{{.Package}}/common/logs"
 )
 
 func ObjToJson(obj any) string {

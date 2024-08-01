@@ -2,7 +2,7 @@ package password
 
 import (
 	"golang.org/x/crypto/bcrypt"
-	"step2money-server/common/logs"
+	"{{.Package}}/common/logs"
 )
 
 // Hash 进行加密

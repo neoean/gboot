@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"log"
-	"step2money-server/common/env"
+	"{{.Package}}/common/env"
 )
 
 func InitConfig() {

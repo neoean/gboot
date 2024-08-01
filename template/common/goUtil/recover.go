@@ -2,7 +2,7 @@ package goUtil
 
 import (
 	"runtime"
-	"step2money-server/common/logs"
+	"{{.Package}}/common/logs"
 )
 
 func Recover(source string) func() {

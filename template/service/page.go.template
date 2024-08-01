@@ -1,0 +1,31 @@
+package service
+
+func Page(page, size int) (offset, count int) {
+	if page < 1 {
+		page = 1
+	}
+
+	if size < 1 {
+		size = 10 // 设置默认的每页记录数为 10
+	}
+
+	offset = (page - 1) * size
+	count = size
+
+	return
+}
+
+func PageRedis(page, size int) (start, stop int64) {
+	if page < 1 {
+		page = 1
+	}
+
+	if size < 1 {
+		size = 10 // 设置默认的每页记录数为 10
+	}
+
+	start = int64((page - 1) * size)
+	stop = start + int64(size)
+
+	return
+}

@@ -1,9 +1,9 @@
 package weApp
 
 import (
-	"step2money-server/common/config"
-	"step2money-server/common/logs"
 	"time"
+	"{{.Package}}/common/config"
+	"{{.Package}}/common/logs"
 )
 
 type WeCache struct{}

@@ -10,9 +10,9 @@ import (
 	"gorm.io/gorm/logger"
 	"log"
 	"os"
-	"step2money-server/common/config"
-	"step2money-server/dao"
 	"time"
+	"{{.Package}}/common/config"
+	"{{.Package}}/dao"
 )
 
 var dbTypeInitializer = map[string]func(){

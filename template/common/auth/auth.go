@@ -4,10 +4,10 @@ import (
 	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
-	"step2money-server/common/logs"
-	"step2money-server/model"
 	"strings"
 	"time"
+	"{{.Package}}/common/logs"
+	"{{.Package}}/model"
 )
 
 var (

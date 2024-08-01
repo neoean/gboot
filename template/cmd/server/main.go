@@ -1,15 +1,15 @@
 package main
 
 import (
+	"/common/db"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"step2money-server/common/config"
-	"step2money-server/common/db"
-	"step2money-server/common/logs"
-	"step2money-server/common/qiniu"
-	"step2money-server/common/redis"
-	"step2money-server/common/weApp"
-	"step2money-server/router"
+	"{{.Package}}/common/config"
+	"{{.Package}}/common/logs"
+	"{{.Package}}/common/qiniu"
+	"{{.Package}}/common/redis"
+	"{{.Package}}/common/weApp"
+	"{{.Package}}/router"
 )
 
 func main() {

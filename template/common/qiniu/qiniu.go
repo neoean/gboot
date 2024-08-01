@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"github.com/qiniu/go-sdk/v7/auth"
 	"github.com/qiniu/go-sdk/v7/storage"
-	"step2money-server/common/config"
+	"{{.Package}}/common/config"
 )
 
 var (

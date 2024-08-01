@@ -1,0 +1,47 @@
+package middlewares
+
+import (
+	"github.com/gin-gonic/gin"
+	"{{.Package}}/common/auth"
+	"{{.Package}}/router/base"
+)
+
+// Jwt jwt认证
+func Jwt() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		claims, err := auth.EncodeByCtx(c)
+		if err != nil {
+			base.FailWithCode(c, base.CodeUnauthorized, "用户未登陆: "+err.Error())
+			c.Abort()
+			return
+		}
+
+		if claims.User.ID == 0 {
+			base.FailWithCode(c, base.CodeUnauthorized, "用户信息错误，未知的token")
+			c.Abort()
+			return
+		}
+
+		c.Set(auth.GinCtxKey, claims.User)
+		c.Next()
+	}
+}
+
+// TryJwt 弱jwt认证
+func TryJwt() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		claims, err := auth.EncodeByCtx(c)
+		if err != nil {
+			c.Next()
+			return
+		}
+
+		if claims != nil && claims.User != nil && claims.User.ID == 0 {
+			c.Next()
+			return
+		}
+
+		c.Set(auth.GinCtxKey, claims.User)
+		c.Next()
+	}
+}

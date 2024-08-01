@@ -15,7 +15,7 @@ import (
 
 func GenGoTemplate(tmpl, dir, name string, models any) {
 	if !common.IsDirExists(dir) {
-		err := os.Mkdir(dir, 0777)
+		err := os.MkdirAll(dir, 0777)
 		if err != nil {
 			fmt.Printf("ERROR: mkdir error: %v", err)
 			panic(err)

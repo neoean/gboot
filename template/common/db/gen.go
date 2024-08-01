@@ -2,14 +2,8 @@ package db
 
 import (
 	"gorm.io/gen"
-	"step2money-server/common/config"
+	"{{.Package}}/common/config"
 )
-
-// Querier Dynamic SQL
-type Querier interface {
-	// FilterWithNameAndRole SELECT * FROM @@table WHERE name = @name{{if role !=""}} AND role = @role{{end}}
-	FilterWithNameAndRole(name, role string) ([]gen.T, error)
-}
 
 func InitGen() {
 	g := gen.NewGenerator(gen.Config{
