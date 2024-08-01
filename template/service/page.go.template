@@ -1,4 +1,4 @@
-package service
+package dto
 
 func Page(page, size int) (offset, count int) {
 	if page < 1 {

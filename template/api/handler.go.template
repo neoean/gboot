@@ -4,6 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"{{.Package}}/common/bizError"
 	"{{.Package}}/common/types"
+	"{{.Package}}/model"
+	"{{.Package}}/router/base"
 	{{.LowerModelName}}Service "{{.Package}}/service/{{.LowerModelName}}"
 )
 
@@ -27,7 +29,7 @@ func Get(c *gin.Context) {
 
 
 func GetList(c *gin.Context) {
-	req := &ListRequest{}
+	req := &base.PageRequest{}
     if err := c.Bind(req); err != nil {
         base.Fail(c, bizError.CommonInvalidError.Error()+err.Error())
         return
@@ -44,7 +46,7 @@ func GetList(c *gin.Context) {
 
 
 func Add(c *gin.Context) {
-	req := &model.{{.ModelName}}
+	req := &model.{{.ModelName}}{}
     if err := c.Bind(req); err != nil {
         base.Fail(c, bizError.CommonInvalidError.Error()+err.Error())
         return
@@ -61,19 +63,19 @@ func Add(c *gin.Context) {
 
 
 func Update(c *gin.Context) {
-	req := &model.{{.ModelName}}
+	req := &model.{{.ModelName}}{}
     if err := c.Bind(req); err != nil {
         base.Fail(c, bizError.CommonInvalidError.Error()+err.Error())
         return
     }
 
-    response, err := {{.LowerModelName}}Service.Update(c, req)
+    err := {{.LowerModelName}}Service.Update(c, req)
     if err != nil {
         base.Fail(c, bizError.CommonUpdateError.Error()+err.Error())
         return
     }
 
-	base.Success(c, response)
+	base.Success(c, nil)
 }
 
 
@@ -92,5 +94,5 @@ func Delete(c *gin.Context) {
         return
     }
 
-    base.Success(c, response)
+    base.Success(c, nil)
 }

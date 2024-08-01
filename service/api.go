@@ -36,6 +36,8 @@ func GenApi(projectName string) {
 
 	// root router tmpl
 	GenGoTemplate("./template/api/router.go.template", projectName+"/router", "root.go", models)
+	GenGoTemplate("./template/service/dto.go.template", projectName+"/service/dto", "dto.go", models)
+	GenGoTemplate("./template/service/page.go.template", projectName+"/service/dto", "page.go", models)
 
 	// base
 	GenGoTemplate("./template/api/base.go.template", projectName+"/router/base", "base.go", models)

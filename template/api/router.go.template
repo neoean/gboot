@@ -7,7 +7,7 @@ import (
 	{{end}}
 )
 
-func ConfigRouter(r *gin.RouterGroup) {
+func Init(r *gin.Engine) {
 	// api root
 	apiRoot := r.Group("/api")
 

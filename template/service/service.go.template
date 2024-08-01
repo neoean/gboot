@@ -8,6 +8,7 @@ import (
 	"{{.Package}}/common/logs"
 	"{{.Package}}/dao"
 	"{{.Package}}/model"
+	"{{.Package}}/service/dto"
 	"time"
 )
 
@@ -24,7 +25,7 @@ func GetById(ctx context.Context, id int64) (result *model.{{.ModelName}}, err e
 	return
 }
 
-func GetList(ctx context.Context, page, size int64) (list []*model.{{.ModelName}}, count int64, err error) {
+func GetList(ctx context.Context, page, size int) (list []*model.{{.ModelName}}, count int64, err error) {
 	dq := dao.Q.{{.ModelName}}
 	{{.LowerModelName}}Dao := dq.WithContext(ctx)
 
@@ -37,9 +38,11 @@ func GetList(ctx context.Context, page, size int64) (list []*model.{{.ModelName}
 	return
 }
 
-func Create(ctx context.Context, {{.LowerModelName}} *model.{{.ModelName}}) error {
+func Create(ctx context.Context, {{.LowerModelName}} *model.{{.ModelName}}) (result *model.{{.ModelName}}, err error) {
 	dq := dao.Q.{{.ModelName}}
-	return dq.WithContext(ctx).Save({{.LowerModelName}})
+	err = dq.WithContext(ctx).Save({{.LowerModelName}})
+    result = {{.LowerModelName}}
+    return 
 }
 
 func Update(ctx context.Context, {{.LowerModelName}} *model.{{.ModelName}}) error {

@@ -1,4 +1,4 @@
-package service
+package dto
 
 type WxAppReq struct {
 	RawData       string `json:"raw_data"`

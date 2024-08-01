@@ -1,10 +1,10 @@
 package main
 
 import (
-	"/common/db"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"{{.Package}}/common/config"
+	"{{.Package}}/common/db"
 	"{{.Package}}/common/logs"
 	"{{.Package}}/common/qiniu"
 	"{{.Package}}/common/redis"
