@@ -10,6 +10,6 @@ git install github.com/neoean/gboot
 gboot -name=PROJECT_NAME -dbtype=mysql -username=root -password=123456 -host=127.0.0.1:3306 -dbName=test
 
 方法二：
-git clone git@github.com:FunAudioLLM/CosyVoice.git
+git clone git@github.com:neoean/gboot.git
 go main.go -name=PROJECT_NAME -dbtype=mysql -username=root -password=123456 -host=127.0.0.1:3306 -dbName=test
 ```
