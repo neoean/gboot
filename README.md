@@ -6,7 +6,7 @@
 ``` sh
 方法一：
 # 先安装命令，确保~/go/bin 在PATH里
-go install github.com/neoean/gboot
+go install github.com/neoean/gboot@latest
 gboot -name=PROJECT_NAME -dbtype=mysql -username=root -password=123456 -host=127.0.0.1:3306 -dbName=test
 
 方法二：
