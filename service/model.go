@@ -11,10 +11,10 @@ type Querier interface {
 	FilterWithNameAndRole(name, role string) ([]gen.T, error)
 }
 
-func GenModel(dir string) {
+func GenModel(projectName string) {
 	g := gen.NewGenerator(gen.Config{
-		OutPath:      dir + "/dao",
-		ModelPkgPath: dir + "/model",
+		OutPath:      projectName + "/dao",
+		ModelPkgPath: projectName + "/model",
 		Mode:         gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface, // generate mode
 		WithUnitTest: false,
 	})

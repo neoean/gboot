@@ -26,7 +26,7 @@ func {{.LowerModelName}}Group(g *gin.RouterGroup) {
 	g.POST("/{{.TableName}}", {{.LowerModelName}}.Add)
 	g.DELETE("/{{.TableName}}/:id", {{.LowerModelName}}.Delete)
 	g.PUT("/{{.TableName}}/:id", {{.LowerModelName}}.Update)
-	g.GET("/{{.TableName}}", {{.LowerModelName}}.GetAll)
+	g.GET("/{{.TableName}}", {{.LowerModelName}}.GetList)
 	g.GET("/{{.TableName}}/:id", {{.LowerModelName}}.Get)
 }
 

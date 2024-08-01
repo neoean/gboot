@@ -22,10 +22,20 @@ func GenGoTemplate(tmpl, dir, name string, models any) {
 		}
 	}
 
-	routerTemplate, err := buildTemplate(tmpl)
+	var funcMap = template.FuncMap{
+		"pluralize":        inflection.Plural,
+		"title":            strings.Title,
+		"toLower":          strings.ToLower,
+		"toLowerCamelCase": CamelToLowerCamel,
+		"toSnakeCase":      snaker.CamelToSnake,
+	}
+
+	routerTemplate, err := template.ParseFiles(tmpl)
 	if err != nil {
 		panic(err)
 	}
+
+	routerTemplate.Funcs(funcMap)
 
 	var buf bytes.Buffer
 	err = routerTemplate.Execute(&buf, models)
@@ -45,24 +55,6 @@ func GenGoTemplate(tmpl, dir, name string, models any) {
 	if err != nil {
 		panic(err)
 	}
-}
-
-func buildTemplate(t string) (*template.Template, error) {
-	var funcMap = template.FuncMap{
-		"pluralize":        inflection.Plural,
-		"title":            strings.Title,
-		"toLower":          strings.ToLower,
-		"toLowerCamelCase": CamelToLowerCamel,
-		"toSnakeCase":      snaker.CamelToSnake,
-	}
-
-	tmpl, err := template.New("models").Funcs(funcMap).ParseFiles(t)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return tmpl, nil
 }
 
 func CamelToLowerCamel(s string) string {

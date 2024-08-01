@@ -30,13 +30,13 @@ func GenApi(projectName string) {
 		models = append(models, model)
 
 		// handler tmpl
-		GenGoTemplate("../template/api/handler.go.template", projectName+"/router/"+lowerModelName, "handler.go", model)
+		GenGoTemplate("./template/api/handler.go.template", projectName+"/router/"+lowerModelName, "handler.go", model)
 	}
 
 	// root router tmpl
-	GenGoTemplate("../template/api/root.go.template", projectName+"/router", "root.go", models)
+	GenGoTemplate("./template/api/router.go.template", projectName+"/router", "root.go", models)
 
 	// base
-	GenGoTemplate("../template/api/base.go.template", projectName+"/router", "root.go", models)
+	GenGoTemplate("./template/api/base.go.template", projectName+"/router/base", "base.go", models)
 
 }

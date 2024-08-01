@@ -1,6 +1,4 @@
-package config
-
-var ConfigTmplate = `port: 8899
+port: 8899
 
 db:
   type: mysql
@@ -18,6 +16,4 @@ weApp:
 
 qiniu:
   accessKey: 
-  secretKey: 
-
-`
+  secretKey:
