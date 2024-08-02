@@ -14,10 +14,12 @@ var (
 	DB *gorm.DB
 )
 
-func InitMysql(user, password, host, dbName string) {
-	// refer https://github.com/go-sql-driver/mysql#dsn-data-source-name for details
-	dsn := fmt.Sprintf("%v:%v@tcp(%v)/%v?charset=utf8mb4&parseTime=True&loc=Local",
-		user, password, host, dbName)
+func InitMysql(dsn, user, password, host, dbName string) {
+	if dsn == "" {
+		// refer https://github.com/go-sql-driver/mysql#dsn-data-source-name for details
+		dsn = fmt.Sprintf("%v:%v@tcp(%v)/%v?charset=utf8mb4&parseTime=True&loc=Local",
+			user, password, host, dbName)
+	}
 
 	var err error
 	DB, err = gorm.Open(

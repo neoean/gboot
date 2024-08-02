@@ -9,6 +9,7 @@ import (
 var (
 	name     = flag.String("name", "project-demo", "project name")
 	dbType   = flag.String("dbtype", "mysql", "database type")
+	dsn      = flag.String("dsn", "", "database schema name")
 	userName = flag.String("username", "root", "database username")
 	password = flag.String("password", "123456", "database password")
 	host     = flag.String("host", "127.0.0.1:3306", "database host")
@@ -20,7 +21,7 @@ func main() {
 	flag.Parse()
 
 	// init db
-	db.InitMysql(*userName, *password, *host, *dbName)
+	db.InitMysql(*dsn, *userName, *password, *host, *dbName)
 
 	// gorm gen
 	service.GenModel(*name)
