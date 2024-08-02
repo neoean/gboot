@@ -1,5 +1,5 @@
 # gboot
-![Build](https://github.com/neoean/gboot/actions/workflows/main.yml/badge.svg?event=push)
+![Build](https://github.com/neoean/gboot/actions/workflows/go.yml/badge.svg?event=push)
 [![Go Report Card](https://goreportcard.com/badge/github.com/neoean/gboot)](https://goreportcard.com/report/github.com/neoean/gboot)
 
 可以用一条命令，根据数据库或者SQL 直接生成完整的golang项目，包括数据模型，dao，service，api等
