@@ -23,11 +23,11 @@ func Init(r *gin.Engine) {
 
 {{range .}}
 func {{.LowerModelName}}Group(g *gin.RouterGroup) {
-	g.POST("/{{.TableName}}", {{.LowerModelName}}.Add)
-	g.DELETE("/{{.TableName}}/:id", {{.LowerModelName}}.Delete)
-	g.PUT("/{{.TableName}}/:id", {{.LowerModelName}}.Update)
-	g.GET("/{{.TableName}}", {{.LowerModelName}}.GetList)
-	g.GET("/{{.TableName}}/:id", {{.LowerModelName}}.Get)
+    g.GET("/list", {{.LowerModelName}}.GetList)
+	g.GET("/:id", {{.LowerModelName}}.Get)
+	g.POST("/", {{.LowerModelName}}.Add)
+	g.PUT("/:id", {{.LowerModelName}}.Update)
+	// g.DELETE("/:id", {{.LowerModelName}}.Delete)
 }
 
 {{end}}
