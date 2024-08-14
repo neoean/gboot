@@ -6,12 +6,12 @@
 
 使用方法：
 ``` sh
-方法一：
+方法一：(略有问题，建议先在gboot项目目录下使用，有好的方案再优化下)
 # 先安装命令，确保~/go/bin 在PATH里
 go install github.com/neoean/gboot@latest
-gboot -name=PROJECT_NAME -dbtype=mysql -username=root -password=123456 -host=127.0.0.1:3306 -dbName=test
+gboot -name=PROJECT_NAME -dbtype=mysql -username=root -password=123456 -host=127.0.0.1:3306 -dbname=test
 
 方法二：
 git clone git@github.com:neoean/gboot.git
-go main.go -name=PROJECT_NAME -dbtype=mysql -username=root -password=123456 -host=127.0.0.1:3306 -dbName=test
+go main.go -name=PROJECT_NAME -dbtype=mysql -username=root -password=123456 -host=127.0.0.1:3306 -dbname=test
 ```
