@@ -22,7 +22,7 @@ func InitWeApp() {
 		},
 	}
 
-	lgr := logger.NewLogger(log.New(logs.GetWriter("/log/step2money_wx.log"), "\r\n", log.LstdFlags), logger.Info, true)
+	lgr := logger.NewLogger(log.New(logs.GetWriter("/log/wechat.log"), "\r\n", log.LstdFlags), logger.Info, true)
 
 	config.WeAppClient = weapp.NewClient(
 		weApp.AppId, weApp.Secret,

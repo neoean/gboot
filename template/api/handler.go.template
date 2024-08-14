@@ -16,9 +16,9 @@ func Get(c *gin.Context) {
 		return
 	}
 
-    id := types.StringToInt64(idStr)
+    id := types.StringToInt(idStr)
 
-    response, err := {{.LowerModelName}}Service.GetById(c, id)
+    response, err := {{.LowerModelName}}Service.GetById(c, int32(id))
     if err != nil {
         base.Fail(c, bizError.CommonQueryError.Error()+err.Error())
         return
@@ -78,21 +78,3 @@ func Update(c *gin.Context) {
 	base.Success(c, nil)
 }
 
-
-func Delete(c *gin.Context) {
-	idStr := c.Param("id")
-    if idStr == "" {
-        base.Fail(c, bizError.CommonInvalidError.Error())
-        return
-    }
-
-    id := types.StringToInt64(idStr)
-
-    err := {{.LowerModelName}}Service.Delete(c, id)
-    if err != nil {
-        base.Fail(c, bizError.CommonQueryError.Error()+err.Error())
-        return
-    }
-
-    base.Success(c, nil)
-}

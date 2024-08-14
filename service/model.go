@@ -3,6 +3,8 @@ package service
 import (
 	"github.com/neoean/gboot/common/db"
 	"gorm.io/gen"
+	"gorm.io/gorm"
+	"strings"
 )
 
 // Querier Dynamic SQL
@@ -18,6 +20,34 @@ func GenModel(projectName string) {
 		Mode:         gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface, // generate mode
 		WithUnitTest: false,
 	})
+
+	var dataMap = map[string]func(gorm.ColumnType) (dataType string){
+		// bool mapping
+		"tinyint": func(columnType gorm.ColumnType) (dataType string) {
+			ct, _ := columnType.ColumnType()
+			comment, _ := columnType.Comment()
+			if strings.HasPrefix(ct, "tinyint") && strings.Contains(comment, "2") {
+				return "int32"
+			}
+
+			return "bool"
+		},
+
+		// int mapping
+		"int": func(columnType gorm.ColumnType) (dataType string) {
+			if n, ok := columnType.Nullable(); ok && n {
+				return "*int32"
+			}
+
+			if columnType.Name() == "id" {
+				return "int64"
+			}
+
+			return "int32"
+		},
+	}
+
+	g.WithDataTypeMap(dataMap)
 
 	// db, _ := gorm.Open(mysql.Open("root:@(127.0.0.1:3306)/demo?charset=utf8mb4&parseTime=True&loc=Local"))
 	g.UseDB(db.DB) // reuse your gorm db
