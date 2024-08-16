@@ -7,13 +7,13 @@ import (
 )
 
 var (
-	name     = flag.String("name", "project-demo", "project name")
+	name     = flag.String("name", "yunyu-server", "project name")
 	dbType   = flag.String("dbtype", "mysql", "database type")
 	dsn      = flag.String("dsn", "", "database schema name")
 	userName = flag.String("username", "root", "database username")
 	password = flag.String("password", "123456", "database password")
 	host     = flag.String("host", "127.0.0.1:3306", "database host")
-	dbName   = flag.String("dbname", "test", "database name")
+	dbName   = flag.String("dbname", "yunyu_server", "database name")
 )
 
 func main() {

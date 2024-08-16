@@ -39,7 +39,7 @@ func main() {
 
 	// listen init
 	port := fmt.Sprintf("%v", config.Config.Port)
-	err := engine.Run(":" + port)
+	err := engine.Run("127.0.0.1:" + port)
 	if err != nil {
 		logs.Error("run webserver error %v", err)
 		panic(err)

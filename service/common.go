@@ -18,8 +18,8 @@ func GenCommon(projectName, user, password, host, dbName string) {
 	commonConfig := &CommonConfig{projectName, host, user, password, dbName}
 
 	// config template
-	GenGoTemplate("./template/config/dev_conf.go.template", projectName+"/conf", "dev.yml", commonConfig)
-	GenGoTemplate("./template/config/dev_conf.go.template", projectName+"/conf", "prod.yml", commonConfig)
+	GenGoTemplate("./template/config/dev_conf.go.template", projectName+"/config", "dev.yml", commonConfig)
+	GenGoTemplate("./template/config/dev_conf.go.template", projectName+"/config", "prod.yml", commonConfig)
 
 	// go.mod
 	GenGoTemplate("./template/go.mod.template", projectName+"/", "go.mod", commonConfig)

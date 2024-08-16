@@ -16,9 +16,9 @@ func Get(c *gin.Context) {
 		return
 	}
 
-    id := types.StringToInt(idStr)
+    id := types.StringToInt64(idStr)
 
-    response, err := {{.LowerModelName}}Service.GetById(c, int32(id))
+    response, err := {{.LowerModelName}}Service.GetById(c, id)
     if err != nil {
         base.Fail(c, bizError.CommonQueryError.Error()+err.Error())
         return

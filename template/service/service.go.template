@@ -10,7 +10,7 @@ import (
 	"{{.Package}}/service/dto"
 )
 
-func GetById(ctx context.Context, id int32) (result *model.{{.ModelName}}, err error) {
+func GetById(ctx context.Context, id int64) (result *model.{{.ModelName}}, err error) {
 	do := dao.Q.{{.ModelName}}
 	{{.LowerModelName}}Dao := do.WithContext(ctx)
 
